@@ -2,8 +2,8 @@
 //  main.m
 //  Wishbox
 //
-//  Created by Albert Villanueva on 10/1/15.
-//  Copyright (c) 2015 Albert Villanueva. All rights reserved.
+//  Created by Albert Villanueva on 19/11/14.
+//  Copyright (c) 2014 Albert Villanueva. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
