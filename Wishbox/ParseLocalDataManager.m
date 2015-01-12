@@ -10,14 +10,21 @@
 #import <Parse/Parse.h>
 #import <Bolts/BFTask.h>
 
+@interface ParseLocalDataManager ()
+
+@property (nonatomic) BOOL isUserLoggedIn;
+
+@end
+
 @implementation ParseLocalDataManager
 
 - (void)downloadParseRemoteObjects{
-    
-    PFQuery *query2 = [PFQuery queryWithClassName:@"Items"];
+
+    PFQuery *query = [PFQuery queryWithClassName:@"Items"];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
     // Query for new results from the network
-    [query2 orderByDescending:@"name"];
-    [[query2 findObjectsInBackground] continueWithSuccessBlock:^id(BFTask *task) {
+    [query orderByDescending:@"name"];
+    [[query findObjectsInBackground] continueWithSuccessBlock:^id(BFTask *task) {
         return [[PFObject unpinAllObjectsInBackgroundWithName:@"MyWishes"] continueWithSuccessBlock:^id(BFTask *ignored) {
             // Cache the new results.
             NSArray *arrayObjects = task.result;
@@ -48,43 +55,6 @@
         
         return task;
     }];
-}
-
-- (void)retrieveUnsavedObjects{
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Items"];
-    [query fromPinWithName:@"NewWish"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        
-        if ([objects count]) {
-            for (PFObject *object in objects) {
-                NSLog(@"OBJECT: %@", [object valueForKey:@"name"]);
-                [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    if (succeeded) {
-                        NSLog(@"Object %@ saved in Parse ✌️✌️✌️", [object valueForKey:@"name"]);
-                        [object unpinInBackgroundWithName:@"NewWish" block:^(BOOL succeeded, NSError *error) {
-                            if (succeeded) {
-                                NSLog(@"Object UNPINNED ✌️");
-                            }
-                        }];
-                        [self downloadParseRemoteObjects];
-                    }
-                    if (error) {
-                        NSLog(@"Unsaved object: %@ still not saved in parse 😭😭😭", [object valueForKey:@"name"]);
-                    }
-                }];
-            }
-            
-            
-        }
-        else{
-            [self downloadParseRemoteObjects];
-        }
-        
-        
-    }];
-    
-    
 }
 
 

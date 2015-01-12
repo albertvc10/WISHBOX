@@ -1,6 +1,4 @@
 #import <UIKit/UIKit.h>
-#import "CoreDataStack.h"
-#import "CoreDataTableViewController.h"
 #import "Person.h"
 #import "Wish.h"
 

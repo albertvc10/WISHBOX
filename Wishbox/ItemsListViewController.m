@@ -6,6 +6,7 @@
 #import "FriendCellTableViewCell.h"
 #import "DetailTableViewController.h"
 #import "CheckLogin.h"
+#import "ParseLocalDataManager.h"
 
 
 
@@ -14,11 +15,39 @@
 @property (nonatomic, strong) NSArray *arrayWishes;
 @property (nonatomic, strong) NSMutableArray *arrayUserWishes;
 @property (nonatomic, assign) BOOL isUserLoggedIn;
+@property (nonatomic, strong) ParseLocalDataManager *localDataManager;
 
 @end
 
 
 @implementation ItemsListViewController
+
+- (ParseLocalDataManager *)localDataManager{
+    
+    if (!_localDataManager) {
+        _localDataManager = [[ParseLocalDataManager alloc]init];
+    }
+    return _localDataManager;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    UIImageView *view = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"fonsPrincipal2"]];
+    self.tableView.backgroundView = view;
+    
+    if (self.isUserLoggedIn) {
+        
+        //        ParseCoreDataManager *parseCoreDataManager = [[ParseCoreDataManager alloc]init];
+        //        parseCoreDataManager.managedObjectContext = self.managedObjectContext;
+        //        parseCoreDataManager.delegate = self;
+        //        self.arrayWishes = [parseCoreDataManager arrayWishesInCoreData];
+        
+        [self.localDataManager downloadParseRemoteObjects];
+        
+    }
+}
+
 
 -(void)viewWillAppear:(BOOL)animated {
     
@@ -33,45 +62,31 @@
     }
     else {
         self.navigationItem.leftBarButtonItem= self.editButtonItem;
+        
+        if (self.isUserLoggedIn == YES) {
+            
+            self.refreshControl = [[UIRefreshControl alloc] init];
+            [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+            [self.refreshControl setTintColor:[UIColor whiteColor]];
+            
+            
+            //Show refresh control over background image from TableView
+            self.refreshControl.layer.zPosition = self.tableView.backgroundView.layer.zPosition + 1;
+            
+        
+            
+            
+        }else{
+            
+            //        ParseCoreDataManager *parseCoreDataManager = [[ParseCoreDataManager alloc]init];
+            //        parseCoreDataManager.managedObjectContext = self.managedObjectContext;
+            //        self.arrayWishes = [parseCoreDataManager requestRefreshedObjects];
+            
+        }
+
     }
     
-    if (self.isUserLoggedIn == YES) {
-        
-        self.refreshControl = [[UIRefreshControl alloc] init];
-        [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
-        [self.refreshControl setTintColor:[UIColor whiteColor]];
-
-        
-        //Show refresh control over background image from TableView
-        self.refreshControl.layer.zPosition = self.tableView.backgroundView.layer.zPosition + 1;
-
-        
-    }else{
-        
-//        ParseCoreDataManager *parseCoreDataManager = [[ParseCoreDataManager alloc]init];
-//        parseCoreDataManager.managedObjectContext = self.managedObjectContext;
-//        self.arrayWishes = [parseCoreDataManager requestRefreshedObjects];
-        
-        [self.tableView reloadData];
-        
-    }
-
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    UIImageView *view = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"fonsPrincipal2"]];
-    self.tableView.backgroundView = view;
     
-    if (self.isUserLoggedIn) {
-        
-//        ParseCoreDataManager *parseCoreDataManager = [[ParseCoreDataManager alloc]init];
-//        parseCoreDataManager.managedObjectContext = self.managedObjectContext;
-//        parseCoreDataManager.delegate = self;
-//        self.arrayWishes = [parseCoreDataManager arrayWishesInCoreData];
-
-    }
 }
 
 #pragma mark TableView DataSource

@@ -1,12 +1,10 @@
 #import "FriendsTableViewController.h"
 #import "ItemsListViewController.h"
 #import "FriendCellTableViewCell.h"
-#import "Person.h"
-#import "Wish.h"
 #import "CheckLogin.h"
 #import "LoginView.h"
 #import "LoginViewController.h"
-#import "FacebookDataManager.h"
+
 
 @interface FriendsTableViewController () <LoginViewDelegate>
 

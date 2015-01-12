@@ -1,6 +1,5 @@
 #import "NewItemTableViewController.h"
 #import "ItemsListViewController.h"
-#import "Wish.h"
 #import "MapViewController.h"
 #import <Parse/Parse.h>
 
@@ -94,37 +93,31 @@
 
 - (IBAction)saveButtonPressed:(id)sender {
     
-    Wish *newWish = [NSEntityDescription insertNewObjectForEntityForName:@"Wish" inManagedObjectContext:self.managedObjectContext];
-    
-    newWish.name = self.nameTextField.text;
-    newWish.price = [NSDecimalNumber decimalNumberWithString:self.priceTextField.text];
-    newWish.image = self.imageData;
-    newWish.textDescription = self.descriptionTextView.text;
-    newWish.latitude = [NSNumber numberWithDouble:self.annotation.coordinate.latitude];
-    newWish.longitude = [NSNumber numberWithDouble:self.annotation.coordinate.longitude];
-    newWish.lastUpdatedAt = [NSDate date];
-    newWish.user = [NSString stringWithFormat:@"%@", [PFUser currentUser]];
-    UIImage *image = self.imageView.image;
-    NSData *imageData = UIImageJPEGRepresentation(image, 0.05f);
-    newWish.image = imageData;
-    
-    if([PFUser currentUser]) {
-        newWish.user = [[PFUser currentUser]valueForKey:@"objectId"];
-    }
-    
-
-    NSError *error = nil;
-    if (![self.managedObjectContext save:&error]) {
-        
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    NSDate *date = [NSDate date];
-    [defaults setObject:date forKey:@"lastCoreDataUpdate"];
-    [defaults synchronize];
+//    Wish *newWish = [NSEntityDescription insertNewObjectForEntityForName:@"Wish" inManagedObjectContext:self.managedObjectContext];
+//    
+//    newWish.name = self.nameTextField.text;
+//    newWish.price = [NSDecimalNumber decimalNumberWithString:self.priceTextField.text];
+//    newWish.image = self.imageData;
+//    newWish.textDescription = self.descriptionTextView.text;
+//    newWish.latitude = [NSNumber numberWithDouble:self.annotation.coordinate.latitude];
+//    newWish.longitude = [NSNumber numberWithDouble:self.annotation.coordinate.longitude];
+//    newWish.lastUpdatedAt = [NSDate date];
+//    newWish.user = [NSString stringWithFormat:@"%@", [PFUser currentUser]];
+//    UIImage *image = self.imageView.image;
+//    NSData *imageData = UIImageJPEGRepresentation(image, 0.05f);
+//    newWish.image = imageData;
+//    
+//    if([PFUser currentUser]) {
+//        newWish.user = [[PFUser currentUser]valueForKey:@"objectId"];
+//    }
+//    
+//
+//    
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    
+//    NSDate *date = [NSDate date];
+//    [defaults setObject:date forKey:@"lastCoreDataUpdate"];
+//    [defaults synchronize];
 
     
     [self dismissViewControllerAnimated:YES completion:nil];

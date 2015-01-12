@@ -1,7 +1,6 @@
 #import "LoginViewController.h"
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import <Parse/Parse.h>
-#import "FacebookDataManager.h"
 
 @interface LoginViewController ()
 

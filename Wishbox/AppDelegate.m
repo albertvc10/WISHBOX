@@ -11,11 +11,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    [Parse enableLocalDatastore];
     [Parse setApplicationId:@"aYQSirqj2R0YWMKPwgYELi23WBp4Mt8w2qqA4xoB"
                   clientKey:@"kBG0DJhHtkztEU4a7WRPCg6rlehqaRcuRsXgrkTA"];
+    
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     [PFFacebookUtils initializeFacebook];
-
     
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navBar"] forBarMetrics:UIBarMetricsDefault];
 

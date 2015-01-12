@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CoreDataStack.h"
 
 
 @interface ProfileViewController : UIViewController
 
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @end

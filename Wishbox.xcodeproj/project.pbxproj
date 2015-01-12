@@ -14,12 +14,7 @@
 		506E80DF1A61592A00BE242E /* WishboxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 506E80DE1A61592A00BE242E /* WishboxTests.m */; };
 		506E80E91A61599300BE242E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 506E80E81A61599300BE242E /* Main.storyboard */; };
 		506E81251A6159DB00BE242E /* CheckLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 506E80F01A6159DB00BE242E /* CheckLogin.m */; };
-		506E81261A6159DB00BE242E /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 506E80F21A6159DB00BE242E /* CoreDataManager.m */; };
-		506E81271A6159DB00BE242E /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 506E80F31A6159DB00BE242E /* CoreDataModel.xcdatamodeld */; };
-		506E81281A6159DB00BE242E /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 506E80F61A6159DB00BE242E /* CoreDataStack.m */; };
-		506E81291A6159DB00BE242E /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506E80F81A6159DB00BE242E /* CoreDataTableViewController.m */; };
 		506E812A1A6159DB00BE242E /* DetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506E80FA1A6159DB00BE242E /* DetailTableViewController.m */; };
-		506E812B1A6159DB00BE242E /* FacebookDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 506E80FC1A6159DB00BE242E /* FacebookDataManager.m */; };
 		506E812C1A6159DB00BE242E /* FriendCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 506E80FE1A6159DB00BE242E /* FriendCellTableViewCell.m */; };
 		506E812D1A6159DB00BE242E /* FriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506E81001A6159DB00BE242E /* FriendsTableViewController.m */; };
 		506E812E1A6159DB00BE242E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 506E81011A6159DB00BE242E /* Images.xcassets */; };
@@ -36,7 +31,6 @@
 		506E813B1A6159DB00BE242E /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 506E81181A6159DB00BE242E /* Person.m */; };
 		506E813C1A6159DB00BE242E /* Wish.m in Sources */ = {isa = PBXBuildFile; fileRef = 506E811A1A6159DB00BE242E /* Wish.m */; };
 		506E813D1A6159DB00BE242E /* NewItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506E811C1A6159DB00BE242E /* NewItemTableViewController.m */; };
-		506E813E1A6159DB00BE242E /* ParseCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 506E811E1A6159DB00BE242E /* ParseCoreDataManager.m */; };
 		506E813F1A6159DB00BE242E /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506E81201A6159DB00BE242E /* ProfileViewController.m */; };
 		506E81471A615A2F00BE242E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506E81421A615A2F00BE242E /* Bolts.framework */; };
 		506E81481A615A2F00BE242E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506E81431A615A2F00BE242E /* Parse.framework */; };
@@ -82,17 +76,8 @@
 		506E80E81A61599300BE242E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		506E80EF1A6159DB00BE242E /* CheckLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckLogin.h; sourceTree = "<group>"; };
 		506E80F01A6159DB00BE242E /* CheckLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckLogin.m; sourceTree = "<group>"; };
-		506E80F11A6159DB00BE242E /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
-		506E80F21A6159DB00BE242E /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
-		506E80F41A6159DB00BE242E /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
-		506E80F51A6159DB00BE242E /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
-		506E80F61A6159DB00BE242E /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
-		506E80F71A6159DB00BE242E /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
-		506E80F81A6159DB00BE242E /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		506E80F91A6159DB00BE242E /* DetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTableViewController.h; sourceTree = "<group>"; };
 		506E80FA1A6159DB00BE242E /* DetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewController.m; sourceTree = "<group>"; };
-		506E80FB1A6159DB00BE242E /* FacebookDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookDataManager.h; sourceTree = "<group>"; };
-		506E80FC1A6159DB00BE242E /* FacebookDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookDataManager.m; sourceTree = "<group>"; };
 		506E80FD1A6159DB00BE242E /* FriendCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCellTableViewCell.h; sourceTree = "<group>"; };
 		506E80FE1A6159DB00BE242E /* FriendCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCellTableViewCell.m; sourceTree = "<group>"; };
 		506E80FF1A6159DB00BE242E /* FriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsTableViewController.h; sourceTree = "<group>"; };
@@ -122,8 +107,6 @@
 		506E811A1A6159DB00BE242E /* Wish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wish.m; sourceTree = "<group>"; };
 		506E811B1A6159DB00BE242E /* NewItemTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewItemTableViewController.h; sourceTree = "<group>"; };
 		506E811C1A6159DB00BE242E /* NewItemTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewItemTableViewController.m; sourceTree = "<group>"; };
-		506E811D1A6159DB00BE242E /* ParseCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseCoreDataManager.h; sourceTree = "<group>"; };
-		506E811E1A6159DB00BE242E /* ParseCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseCoreDataManager.m; sourceTree = "<group>"; };
 		506E811F1A6159DB00BE242E /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		506E81201A6159DB00BE242E /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		506E81421A615A2F00BE242E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
@@ -207,20 +190,9 @@
 				506E81661A616A9000BE242E /* View */,
 				506E81651A616A8700BE242E /* Controller */,
 				506E81641A616A7B00BE242E /* Model */,
-				506E80F11A6159DB00BE242E /* CoreDataManager.h */,
-				506E80F21A6159DB00BE242E /* CoreDataManager.m */,
-				506E80F31A6159DB00BE242E /* CoreDataModel.xcdatamodeld */,
-				506E80F51A6159DB00BE242E /* CoreDataStack.h */,
-				506E80F61A6159DB00BE242E /* CoreDataStack.m */,
-				506E80F71A6159DB00BE242E /* CoreDataTableViewController.h */,
-				506E80F81A6159DB00BE242E /* CoreDataTableViewController.m */,
-				506E80FB1A6159DB00BE242E /* FacebookDataManager.h */,
-				506E80FC1A6159DB00BE242E /* FacebookDataManager.m */,
 				506E81011A6159DB00BE242E /* Images.xcassets */,
 				506E81021A6159DB00BE242E /* Info.plist */,
 				506E81121A6159DB00BE242E /* Model */,
-				506E811D1A6159DB00BE242E /* ParseCoreDataManager.h */,
-				506E811E1A6159DB00BE242E /* ParseCoreDataManager.m */,
 				506E80C61A61592900BE242E /* AppDelegate.h */,
 				506E80C71A61592900BE242E /* AppDelegate.m */,
 				506E80CF1A61592900BE242E /* Images.xcassets */,
@@ -585,16 +557,11 @@
 			files = (
 				506E812A1A6159DB00BE242E /* DetailTableViewController.m in Sources */,
 				506E812D1A6159DB00BE242E /* FriendsTableViewController.m in Sources */,
-				506E81261A6159DB00BE242E /* CoreDataManager.m in Sources */,
-				506E812B1A6159DB00BE242E /* FacebookDataManager.m in Sources */,
-				506E81291A6159DB00BE242E /* CoreDataTableViewController.m in Sources */,
-				506E813E1A6159DB00BE242E /* ParseCoreDataManager.m in Sources */,
 				506E81391A6159DB00BE242E /* _Person.m in Sources */,
 				506E81381A6159DB00BE242E /* MapViewController.m in Sources */,
 				506E81371A6159DB00BE242E /* MapAnnotation.m in Sources */,
 				506E813A1A6159DB00BE242E /* _Wish.m in Sources */,
 				506E81341A6159DB00BE242E /* LoginViewController.m in Sources */,
-				506E81281A6159DB00BE242E /* CoreDataStack.m in Sources */,
 				506E81301A6159DB00BE242E /* ItemCellTableViewCell.m in Sources */,
 				506E80C81A61592900BE242E /* AppDelegate.m in Sources */,
 				506E81321A6159DB00BE242E /* LoginView.m in Sources */,
@@ -603,7 +570,6 @@
 				506E80C51A61592900BE242E /* main.m in Sources */,
 				506E813F1A6159DB00BE242E /* ProfileViewController.m in Sources */,
 				506E81311A6159DB00BE242E /* ItemsListViewController.m in Sources */,
-				506E81271A6159DB00BE242E /* CoreDataModel.xcdatamodeld in Sources */,
 				506E81251A6159DB00BE242E /* CheckLogin.m in Sources */,
 				506E813C1A6159DB00BE242E /* Wish.m in Sources */,
 				506E813B1A6159DB00BE242E /* Person.m in Sources */,
@@ -808,19 +774,6 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		506E80F31A6159DB00BE242E /* CoreDataModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				506E80F41A6159DB00BE242E /* CoreDataModel.xcdatamodel */,
-			);
-			currentVersion = 506E80F41A6159DB00BE242E /* CoreDataModel.xcdatamodel */;
-			path = CoreDataModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 506E80B71A61592900BE242E /* Project object */;
 }
