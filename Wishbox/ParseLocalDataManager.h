@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Wish.h"
 
 @protocol ParseDataManagerDelegate <NSObject>
 @required
-- (void)parseDidFinishDownloadingRemoteObjects:(NSArray *)objects;
-- (void)parseDidFinishDownloadingLocalObjects:(NSArray *)objects;
+- (void)parseDidFinishDownloadingRemoteObjects:(NSMutableArray *)objects;
+- (void)parseDidFinishDownloadingLocalObjects:(NSMutableArray *)objects;
 
 @end
 
@@ -24,4 +25,7 @@
 
 - (void)retrieveLocalObjects;
 
+- (void)removeWish:(Wish *)pfo;
+
+- (void)removeLocalWish:(Wish *)wish;
 @end

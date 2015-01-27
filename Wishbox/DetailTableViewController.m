@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 
 @property (nonatomic, strong) MapAnnotation *annotation;
 
@@ -32,6 +33,9 @@
     self.tableView.backgroundView = view;
 
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
+    [[UITableViewCell appearance] setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
     self.imageView.clipsToBounds = YES;
     self.imageView.layer.cornerRadius = 72;
     
@@ -39,25 +43,35 @@
     
     self.title = self.wish.name;
     self.priceLabel.text = [NSString stringWithFormat:@"%@ €", self.wish.price];
-    UIImage *image = [UIImage imageWithData:self.wish.image];
-    self.imageView.image = image;
+    [self.wish.image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        
+        if (data) {
+            
+            UIImage *image = [UIImage imageWithData:data];
+            self.imageView.image = image;
+        }
+        else if (error){
+            NSLog(@"Error downloading imageWish: %@", error);
+        }
+    }];
+
     self.descriptionTextView.text = self.wish.textDescription;
 
     
     self.annotation = [[MapAnnotation alloc]init];
     
     [self.annotation setCoordinate:CLLocationCoordinate2DMake([self.wish.latitude floatValue], [self.wish.longitude floatValue])];
-
-    
     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if (self.wish.latitude == [NSNumber numberWithDouble:0.0]) {
+    NSNumber *zero = 0;
+    
+    if (self.wish.latitude == self.wish.longitude) {
         
-        [self.mapView setHidden:YES];
+        [self.locationCell setHidden:YES];
         
     }
     else{

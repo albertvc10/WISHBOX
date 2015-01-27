@@ -7,8 +7,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *wishPrice;
 @property (weak, nonatomic) IBOutlet UIButton *statusView;
 
-
-
 @end
 
 @implementation ItemCellTableViewCell
@@ -17,7 +15,7 @@
     // Initialization code
     
     self.itemImageView.clipsToBounds = YES;
-    self.itemImageView.layer.cornerRadius = 40;
+    self.itemImageView.layer.cornerRadius = 37;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -33,17 +31,33 @@
     self.wishName.text = wish.name;
     self.wishPrice.text = [NSString stringWithFormat:@"%@ €", wish.price];
     
-    UIImage *image = [UIImage imageWithData:wish.image];
-    
     if (wish.image == nil) {
-        self.itemImageView.image = [UIImage imageNamed:@"defaultImage"];
+        if (wish.localImageData == nil) {
+            self.itemImageView.image = [UIImage imageNamed:@"defaultImage"];
+            
+        }else{
+            UIImage *image = [UIImage imageWithData:wish.localImageData];
+            self.itemImageView.image = image;
+        }
     }
     else{
-        self.itemImageView.image = image;
+        
+        [wish.image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            
+            if (data) {
+                
+                UIImage *image = [UIImage imageWithData:data];
+                self.itemImageView.image = image;
+            }
+            else if (error){
+                NSLog(@"Error downloading imageWish: %@", error);
+            }
+        }];
+        
     }
     
     
-    if (wish.isBookedValue) {
+    if (wish.isBooked == YES) {
   
         [self.statusView setBackgroundImage:[UIImage imageNamed:@"gift-box-icon2"] forState:UIControlStateNormal];
 
@@ -68,20 +82,16 @@
 }
 - (IBAction)statusButtonPressed:(id)sender {
     
-    if (self.wish.isBookedValue) {
-        self.wish.isBookedValue = NO;
+    if (self.wish.isBooked == YES) {
+        self.wish.isBooked = NO;
         [self.delegate didSelectWish:self.wish wishBooked:NO];
         [self.statusView setBackgroundImage:[UIImage imageNamed:@"gift-box-icon"] forState:UIControlStateNormal];
     }
     else {
-        self.wish.isBookedValue = YES;
+        self.wish.isBooked = YES;
         [self.delegate didSelectWish:self.wish wishBooked:YES];
         [self.statusView setBackgroundImage:[UIImage imageNamed:@"gift-box-icon2"] forState:UIControlStateNormal];
 
-
     }
-
-
-    
 }
 @end

@@ -14,7 +14,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *cityLabel;
 
-
 @end
 
 @implementation FriendCellTableViewCell
@@ -22,7 +21,7 @@
 - (void)awakeFromNib {
     // Initialization code
     self.friendImageView.clipsToBounds = YES;
-    self.friendImageView.layer.cornerRadius = 36;    
+    self.friendImageView.layer.cornerRadius = 34;
     
 }
 
@@ -39,7 +38,9 @@
     
     self.nameLabel.text = person.name;
     self.cityLabel.text = person.city;
-    UIImage *image = [UIImage imageWithData:person.image];
+    NSURL *url = [NSURL URLWithString:person.imageURL];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *image = [UIImage imageWithData:data];
     self.friendImageView.image = image;
 }
 

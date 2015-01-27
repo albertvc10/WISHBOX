@@ -11,12 +11,19 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [Parse enableLocalDatastore];
-    [Parse setApplicationId:@"aYQSirqj2R0YWMKPwgYELi23WBp4Mt8w2qqA4xoB"
-                  clientKey:@"kBG0DJhHtkztEU4a7WRPCg6rlehqaRcuRsXgrkTA"];
+
     
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    [PFFacebookUtils initializeFacebook];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+    dispatch_async(queue, ^(void) {
+         [Parse enableLocalDatastore];
+               [Parse setApplicationId:@"aYQSirqj2R0YWMKPwgYELi23WBp4Mt8w2qqA4xoB"
+                      clientKey:@"kBG0DJhHtkztEU4a7WRPCg6rlehqaRcuRsXgrkTA"];
+       
+
+       // [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+        [PFFacebookUtils initializeFacebook];
+        
+    });
     
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navBar"] forBarMetrics:UIBarMetricsDefault];
 
@@ -37,16 +44,16 @@
 #warning Check if this code is needed before updating to the App Store
     UITabBarController *tabBar = (UITabBarController *)self.window.rootViewController;
     
-    UINavigationController *nc = (UINavigationController *)[tabBar viewControllers][0];
-    ItemsListViewController *vc = (ItemsListViewController *)nc.topViewController;
-
-    
-    UINavigationController *nc2 = (UINavigationController *)[tabBar viewControllers][1];
-    FriendsTableViewController *vc2 = (FriendsTableViewController *)nc2.topViewController;
-
-    
-    UINavigationController *nc3 = (UINavigationController *)[tabBar viewControllers][2];
-    ProfileViewController *vc3 = (ProfileViewController *)nc3.topViewController;
+//    UINavigationController *nc = (UINavigationController *)[tabBar viewControllers][0];
+//    ItemsListViewController *vc = (ItemsListViewController *)nc.topViewController;
+//
+//    
+//    UINavigationController *nc2 = (UINavigationController *)[tabBar viewControllers][1];
+//    FriendsTableViewController *vc2 = (FriendsTableViewController *)nc2.topViewController;
+//
+//    
+//    UINavigationController *nc3 = (UINavigationController *)[tabBar viewControllers][2];
+//    ProfileViewController *vc3 = (ProfileViewController *)nc3.topViewController;
    
     
     //CUSTOM TABBAR
@@ -79,6 +86,11 @@
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [PFFacebookUtils handleOpenURL:url];
+}
+
+
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
@@ -105,6 +117,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
+   
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

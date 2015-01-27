@@ -15,14 +15,14 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.34999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="To get all the information from your friends you have to log in with facebook" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmC-gU-Tdi">
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.34999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="To get all the information from your friends you have to log in with facebook" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmC-gU-Tdi">
                     <rect key="frame" x="187" y="-29" width="227" height="342"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="342" id="5lb-ls-gse"/>
                         <constraint firstAttribute="width" constant="227" id="lA5-RP-eiu"/>
                         <constraint firstAttribute="width" constant="295" id="ugY-Es-gXT"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                     <variation key="default">
@@ -71,7 +71,7 @@
                 </imageView>
             </subviews>
             <constraints>
-                <constraint firstItem="dmC-gU-Tdi" firstAttribute="top" secondItem="cix-Em-cT1" secondAttribute="top" constant="175" id="Aqh-Ks-ZVQ"/>
+                <constraint firstItem="dmC-gU-Tdi" firstAttribute="top" secondItem="cix-Em-cT1" secondAttribute="top" constant="190" id="Aqh-Ks-ZVQ"/>
                 <constraint firstAttribute="centerX" secondItem="dmC-gU-Tdi" secondAttribute="centerX" id="EVI-YF-Iqo"/>
                 <constraint firstAttribute="centerX" secondItem="wGS-0S-eXz" secondAttribute="centerX" id="IK4-l1-NMM"/>
                 <constraint firstItem="qTB-eE-xVe" firstAttribute="top" secondItem="cix-Em-cT1" secondAttribute="top" constant="246" id="Mcs-cF-4ag"/>

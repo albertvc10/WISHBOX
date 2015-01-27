@@ -1,9 +1,16 @@
 #import "NewItemTableViewController.h"
 #import "ItemsListViewController.h"
 #import "MapViewController.h"
-#import <Parse/Parse.h>
+#import "ParseLocalDataManager.h"
+#import "MBProgressHUD.h"
 
-@interface NewItemTableViewController () <UIImagePickerControllerDelegate, UIActionSheetDelegate, MapLocationDelegate>
+@interface NewItemTableViewController () <UIImagePickerControllerDelegate, UIActionSheetDelegate, MapLocationDelegate, MBProgressHUDDelegate>
+
+{
+    MBProgressHUD *HUD;
+    MBProgressHUD *refreshHUD;
+}
+
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
@@ -47,6 +54,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    
     
     if (self.annotation == nil) {
         [self.mapView setHidden:YES];
@@ -93,34 +102,81 @@
 
 - (IBAction)saveButtonPressed:(id)sender {
     
-//    Wish *newWish = [NSEntityDescription insertNewObjectForEntityForName:@"Wish" inManagedObjectContext:self.managedObjectContext];
-//    
-//    newWish.name = self.nameTextField.text;
-//    newWish.price = [NSDecimalNumber decimalNumberWithString:self.priceTextField.text];
-//    newWish.image = self.imageData;
-//    newWish.textDescription = self.descriptionTextView.text;
-//    newWish.latitude = [NSNumber numberWithDouble:self.annotation.coordinate.latitude];
-//    newWish.longitude = [NSNumber numberWithDouble:self.annotation.coordinate.longitude];
-//    newWish.lastUpdatedAt = [NSDate date];
-//    newWish.user = [NSString stringWithFormat:@"%@", [PFUser currentUser]];
-//    UIImage *image = self.imageView.image;
-//    NSData *imageData = UIImageJPEGRepresentation(image, 0.05f);
-//    newWish.image = imageData;
-//    
-//    if([PFUser currentUser]) {
-//        newWish.user = [[PFUser currentUser]valueForKey:@"objectId"];
-//    }
-//    
-//
-//    
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    
-//    NSDate *date = [NSDate date];
-//    [defaults setObject:date forKey:@"lastCoreDataUpdate"];
-//    [defaults synchronize];
+    [self.view endEditing:YES];
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    
+    HUD.dimBackground = YES;
+    
+    [HUD show:YES];
 
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    PFObject *object = [PFObject objectWithClassName:@"Wishes"];
+    [object setObject:self.nameTextField.text forKey:@"name"];
+    [object setObject:[NSDecimalNumber decimalNumberWithString:self.priceTextField.text] forKey:@"price"];
+    [object setObject:self.descriptionTextView.text forKey:@"textDescription"];
+    [object setObject:[NSNumber numberWithDouble:self.annotation.coordinate.latitude] forKey:@"latitude"];
+    [object setObject:[NSNumber numberWithDouble:self.annotation.coordinate.longitude] forKey:@"longitude"];
+    [object setObject:[NSNumber numberWithBool:NO] forKey:@"isBooked"];
+    
+    if ([PFUser currentUser]) {
+        [object setObject:[PFUser currentUser] forKey:@"user"];
+
+    }
+    UIImage *image = self.imageView.image;
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.05f);
+    PFFile *file = [PFFile fileWithData:imageData];
+    [object setObject:file forKey:@"image"];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL *isUserLoggedIn = [defaults boolForKey:@"isUserLoggedIn"];
+    
+    if (isUserLoggedIn) {
+        [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                NSLog(@"Object Saved in Parse ✌️!");
+                
+                [HUD hide:YES];
+                
+                [object pinInBackgroundWithName:@"MyWishes"];
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
+            else if (error) {
+                
+                UIAlertController * alert=   [UIAlertController
+                                              alertControllerWithTitle:@"No internet connection"
+                                              message:@"There was an error while the object was saved to the server"
+                                              preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction* ok = [UIAlertAction
+                                     actionWithTitle:@"OK"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * action)
+                                     {
+                                         //Do some thing here
+                                         [alert dismissViewControllerAnimated:YES completion:nil];
+                                         
+                                     }];
+                [alert addAction:ok]; // add action to uialertcontroller
+            }
+        }];
+
+    }
+    else {
+        
+        [object setObject:imageData forKey:@"localImageData"];
+        [object pinInBackgroundWithName:@"MyWishes" block:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                NSLog(@"Object Pinned Locally✌️");
+                [HUD hide:YES];
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }else if (error){
+                NSLog(@"Error Pinnng object!!😖");
+            }
+        }];
+    }
+    
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

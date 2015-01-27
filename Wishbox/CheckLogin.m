@@ -14,9 +14,7 @@
 
 
 + (void)checkIfUserIsCached {
-    
 
-    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     if ([PFUser currentUser] && // Check if user is cached
