@@ -147,6 +147,8 @@
     
    LoginViewController *vc = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:@"logInViewController"];
     
+    self.isFirstTime = NO;
+    
     [self presentViewController:vc animated:YES completion:nil];
     
 }

@@ -25,6 +25,7 @@
 @property (nonatomic, strong) Wish *wish;
 @property (nonatomic, strong) EmptyTable *emptyTable;
 
+
 @end
 
 
@@ -46,6 +47,8 @@
     return _facebookDataManager;
     
 }
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -64,6 +67,7 @@
     if (self.friendsMode == NO) {
         if (self.isUserLoggedIn == YES) {
             [self.localDataManager downloadParseRemoteObjects];
+
         }
     }
     
@@ -316,6 +320,7 @@
         [self.refreshControl endRefreshing];
         
         [self.tableView reloadData];
+
     }
 }
 

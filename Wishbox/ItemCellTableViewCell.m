@@ -31,16 +31,14 @@
     self.wishName.text = wish.name;
     self.wishPrice.text = [NSString stringWithFormat:@"%@ €", wish.price];
     
-    if (wish.image == nil) {
-        if (wish.localImageData == nil) {
-            self.itemImageView.image = [UIImage imageNamed:@"defaultImage"];
-            
-        }else{
+    if (wish.localImageData) {
+       
+       
             UIImage *image = [UIImage imageWithData:wish.localImageData];
             self.itemImageView.image = image;
-        }
+        
     }
-    else{
+    else if (wish.image){
         
         [wish.image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             
@@ -53,6 +51,13 @@
                 NSLog(@"Error downloading imageWish: %@", error);
             }
         }];
+
+        
+    }
+    else{
+        
+        self.itemImageView.image = [UIImage imageNamed:@"defaultImage"];
+        
         
     }
     

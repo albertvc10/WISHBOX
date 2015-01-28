@@ -127,12 +127,13 @@
     UIImage *image = self.imageView.image;
     NSData *imageData = UIImageJPEGRepresentation(image, 0.05f);
     PFFile *file = [PFFile fileWithData:imageData];
-    [object setObject:file forKey:@"image"];
+    
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     BOOL *isUserLoggedIn = [defaults boolForKey:@"isUserLoggedIn"];
     
     if (isUserLoggedIn) {
+        [object setObject:file forKey:@"image"];
         [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 NSLog(@"Object Saved in Parse ✌️!");
